@@ -1,5 +1,4 @@
 use std::fs::read_to_string;
-use std::iter::Iterator;
 
 pub fn aoc_1_1() -> usize {
     return calculate_calibration_value(&read_calibration_data());
@@ -42,25 +41,32 @@ const DIGIT_DICTIONARY: [(&str, usize); 9] = [
 fn calculate_calibration_value_from_data_with_spelled_numbers(calibration_data: &str) -> usize {
     let mut calibration_value = 0;
     for line in  calibration_data.lines() {
-        let mut digits = Vec::<usize>::new();
-        for pos in 0..line.len() {
-            let char_at_pos = line.chars().nth(pos).unwrap();
-            if char_at_pos.is_numeric() {
-                digits.push(char_at_pos.to_string().parse().unwrap());
-            } else {
-                for (digit_word, digit) in DIGIT_DICTIONARY {
-                    if line[pos..].starts_with(digit_word) {
-                        digits.push(digit);
-                        break;
-                    }
+        calibration_value += evaluate_line_with_spelled_numbers(line);
+    }
+    return calibration_value;
+}
+
+fn evaluate_line_with_spelled_numbers(line: &str) -> usize {
+    let mut digits = Vec::<usize>::new();
+    for pos in 0..line.len() {
+        let char_at_pos = line.chars().nth(pos).unwrap();
+        if char_at_pos.is_numeric() {
+            digits.push(char_at_pos.to_string().parse().unwrap());
+        } else {
+            for (digit_word, digit) in DIGIT_DICTIONARY {
+                if line[pos..].starts_with(digit_word) {
+                    digits.push(digit);
+                    break;
                 }
             }
         }
-        if let (Some(first), Some(last)) = (digits.first(), digits.last()) {
-            calibration_value += format!("{first}{last}").parse::<usize>().unwrap();
-        }
     }
-    return calibration_value;
+
+    if let (Some(first), Some(last)) = (digits.first(), digits.last()) {
+        return format!("{first}{last}").parse().unwrap();
+    } else {
+        return 0;
+    }
 }
 
 #[cfg(test)]

@@ -17,15 +17,14 @@ fn read_calibration_data() -> String {
 }
 
 fn calculate_calibration_value(calibration_data: &str) -> usize {
-    let mut calibration_values = Vec::<usize>::new();
+    let mut calibration_value = 0;
     for line in  calibration_data.lines() {
         let digits: Vec<char> = line.chars().filter(|c| c.is_numeric()).collect();
         if let (Some(first), Some(last)) = (digits.first(), digits.last()) {
-            calibration_values.push(format!("{first}{last}").parse().unwrap());
+            calibration_value += format!("{first}{last}").parse::<usize>().unwrap();
         }
     }
-
-    return calibration_values.iter().sum();
+    return calibration_value;
 }
 
 const DIGIT_DICTIONARY: [(&str, usize); 9] = [
@@ -41,7 +40,7 @@ const DIGIT_DICTIONARY: [(&str, usize); 9] = [
 ];
 
 fn calculate_calibration_value_from_data_with_spelled_numbers(calibration_data: &str) -> usize {
-    let mut calibration_values = Vec::<usize>::new();
+    let mut calibration_value = 0;
     for line in  calibration_data.lines() {
         let mut digits = Vec::<usize>::new();
         for pos in 0..line.len() {
@@ -58,11 +57,10 @@ fn calculate_calibration_value_from_data_with_spelled_numbers(calibration_data: 
             }
         }
         if let (Some(first), Some(last)) = (digits.first(), digits.last()) {
-            calibration_values.push(format!("{first}{last}").parse().unwrap());
+            calibration_value += format!("{first}{last}").parse::<usize>().unwrap();
         }
     }
-
-    return calibration_values.iter().sum();
+    return calibration_value;
 }
 
 #[cfg(test)]

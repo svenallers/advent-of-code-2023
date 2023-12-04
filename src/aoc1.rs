@@ -1,18 +1,11 @@
-use std::fs::read_to_string;
+use crate::fs_util::read_or_panic;
 
 pub fn aoc_1_1() -> usize {
-    return calculate_calibration_value(&read_calibration_data());
+    return calculate_calibration_value(&read_or_panic("res/aoc1.txt"));
 }
 
 pub fn aoc_1_2() -> usize {
-    return calculate_calibration_value_from_data_with_spelled_numbers(&read_calibration_data());
-}
-
-fn read_calibration_data() -> String {
-    let Ok(calibration_data) = read_to_string("res/aoc1.txt") else {
-        panic!("unable to read calibration file")
-    };
-    return calibration_data;
+    return calculate_calibration_value_from_data_with_spelled_numbers(&read_or_panic("res/aoc1.txt"));
 }
 
 fn calculate_calibration_value(calibration_data: &str) -> usize {
@@ -71,19 +64,18 @@ fn evaluate_line_with_spelled_numbers(line: &str) -> usize {
 
 #[cfg(test)]
 mod tests {
-    use std::fs::read_to_string;
-
     use crate::aoc1::{calculate_calibration_value, calculate_calibration_value_from_data_with_spelled_numbers};
+    use crate::fs_util::read_or_panic;
 
     #[test]
     fn aoc_1_1() {
-        let example_data = read_to_string("res/aoc1-1-example.txt").unwrap();
+        let example_data = read_or_panic("res/aoc1-1-example.txt");
         assert_eq!(calculate_calibration_value(&example_data), 142);
     }
 
     #[test]
     fn aoc_1_2() {
-        let example_data = read_to_string("res/aoc1-2-example.txt").unwrap();
+        let example_data = read_or_panic("res/aoc1-1-example.txt");
         assert_eq!(calculate_calibration_value_from_data_with_spelled_numbers(&example_data), 363);
     }
 }

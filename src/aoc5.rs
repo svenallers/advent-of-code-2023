@@ -2,6 +2,7 @@ use once_cell::sync::Lazy;
 use regex::{Captures, Regex};
 
 use crate::fs_util::read_or_panic;
+use crate::parse_util::parse_numbers;
 
 struct Almanac {
     seeds: Vec<usize>,
@@ -152,10 +153,6 @@ fn create_seed_ranges_from_pairs(pairs: &Vec<usize>) -> Vec<SeedRange> {
         });
     }
     return seeds;
-}
-
-fn parse_numbers(capture: &Captures, group_name: &str) -> Vec<usize>{
-    capture.name(group_name).unwrap().as_str().split(" ").filter(|num| !num.is_empty()).map(|num| num.parse().unwrap()).collect()
 }
 
 fn parse_map(capture: &Captures, group_name: &str) -> Vec<AlmanacMapping>{

@@ -1,7 +1,8 @@
 use once_cell::sync::Lazy;
-use regex::{Captures, Regex};
+use regex::Regex;
 
 use crate::fs_util::read_or_panic;
+use crate::parse_util::parse_numbers;
 
 #[derive(Clone)]
 struct Card {
@@ -66,10 +67,6 @@ fn parse_input_data(input_data: &str) -> Vec<Card> {
             own_numbers: parse_numbers(&matched_card, "own_numbers"),
         }
     }).collect();
-}
-
-fn parse_numbers(capture: &Captures, group_name: &str) -> Vec<usize>{
-    capture.name(group_name).unwrap().as_str().split(" ").filter(|num| !num.is_empty()).map(|num| num.parse().unwrap()).collect()
 }
 
 #[cfg(test)]

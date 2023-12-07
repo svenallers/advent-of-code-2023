@@ -13,6 +13,7 @@ mod aoc3;
 mod aoc4;
 mod aoc5;
 mod aoc6;
+mod aoc7;
 mod aoc7_1;
 mod aoc7_2;
 mod fs_util;

@@ -57,7 +57,7 @@ fn parse_and_count_all_cards_including_won_ones(input_file: &str) -> usize {
     return all_cards.len();
 }
 
-static CARD_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"Card\s+(?<number>\d+):\s*(?<winning_numbers>(\d+\s*)*)\|\s*(?<own_numbers>(\d+\s*)*)(\n|$)").unwrap());
+const CARD_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"Card\s+(?<number>\d+):\s*(?<winning_numbers>(\d+\s*)*)\|\s*(?<own_numbers>(\d+\s*)*)(\n|$)").unwrap());
 
 fn parse_input_data(input_data: &str) -> Vec<Card> {
     return CARD_REGEX.captures_iter(input_data).map(|matched_card| {

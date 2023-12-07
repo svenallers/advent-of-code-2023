@@ -114,7 +114,7 @@ fn parse_and_combine_gear_ratios(file: &str) -> usize {
     return schematic.find_gears().iter().map(|gear| gear.ratio).sum();
 }
 
-static PARTS_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"(?<number>\d+)|(?<symbol>[^1-9.\n])").unwrap());
+const PARTS_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"(?<number>\d+)|(?<symbol>[^1-9.\n])").unwrap());
 
 fn parse_input_data(input_data: &str) -> Schematic {
     let lines = input_data.lines().map(|line| {

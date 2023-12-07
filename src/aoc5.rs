@@ -91,7 +91,7 @@ fn parse_with_pairs_and_find_nearest_location(input_file: &str) -> usize {
         return min;
     }).min().unwrap();
 }
-static ALMANAC_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(
+const ALMANAC_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(
 r"^seeds:(?<seeds>(\s*\d+)+)\n
 seed-to-soil map:
 (?<seed_to_soil>((\d+\s*)*\n*)*)

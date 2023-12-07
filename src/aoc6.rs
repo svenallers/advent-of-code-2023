@@ -54,7 +54,7 @@ fn half(from: &usize, to: &usize) -> usize {
     ((to - from) as f32 / 2.0).ceil() as usize
 }
 
-static RACES_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(
+const RACES_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(
 r"^Time:(?<times>(\s*\d+)+)
 Distance:(?<distances>(\s*\d+)+)").unwrap());
 

@@ -72,8 +72,8 @@ fn power_of_min_combination_possible(combinations: &Vec<CubeCombination>) -> usi
     return min_combination.red * min_combination.green * min_combination.blue;
 }
 
-static GAME_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"Game\s(?<number>\d+):(?<combinations>[^\n]*)(\n|$)").unwrap());
-static COMBINATION_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"(?<amount>\d+)\s(?<color>[a-z]+)").unwrap());
+const GAME_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"Game\s(?<number>\d+):(?<combinations>[^\n]*)(\n|$)").unwrap());
+const COMBINATION_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"(?<amount>\d+)\s(?<color>[a-z]+)").unwrap());
 
 fn parse_input_data(input_data: &str) -> Vec<Game> {
     return GAME_REGEX.captures_iter(input_data).map(|matched_game| {

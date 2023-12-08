@@ -1,4 +1,5 @@
 use crate::aoc7::{aoc_7_1, aoc_7_2};
+use crate::aoc8::{aoc_8_1, aoc_8_2};
 
 mod aoc1;
 mod aoc2;
@@ -7,6 +8,7 @@ mod aoc4;
 mod aoc5;
 mod aoc6;
 mod aoc7;
+mod aoc8;
 mod fs_util;
 mod parse_util;
 
@@ -23,6 +25,8 @@ fn main() {
     // println!("AoC 5.2: {}", aoc_5_2());
     // println!("AoC 6.1: {}", aoc_6_1());
     // println!("AoC 6.2: {}", aoc_6_2());
-    println!("AoC 7.1: {}", aoc_7_1());
-    println!("AoC 7.2: {}", aoc_7_2());
+    // println!("AoC 7.1: {}", aoc_7_1());
+    // println!("AoC 7.2: {}", aoc_7_2());
+    // println!("AoC 8.1: {}", aoc_8_1());
+    println!("AoC 8.2: {}", aoc_8_2());
 }
